@@ -1,0 +1,23 @@
+grammar org.xtext.example.mapping.Mapping with org.eclipse.xtext.common.Terminals
+
+generate mapping "http://www.xtext.org/example/mapping/Mapping"
+
+Mapping:
+	definitions+=Definition*
+;
+	
+Definition:
+	formalElement=FormalElement ',' umlElement=UmlElement ',' typeElement=TypeElement
+;
+
+FormalElement:
+	name=ID
+;
+
+UmlElement:
+	name=ID
+;
+
+TypeElement:
+	name=ID
+;

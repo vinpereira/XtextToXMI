@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="org.xtext.example.plugin.contribution1">
+         <menu
+               label="New Submenu"
+               path="additions"
+               id="org.xtext.example.plugin.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="New Action"
+               class="org.xtext.example.plugin.popup.actions.NewAction"
+               menubarPath="org.xtext.example.plugin.menu1/group1"
+               enablesFor="1"
+               id="org.xtext.example.plugin.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

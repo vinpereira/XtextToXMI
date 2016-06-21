@@ -1,0 +1,77 @@
+grammar org.xtext.example.dsl.Trace with org.eclipse.xtext.common.Terminals
+
+generate trace "http://www.xtext.org/example/dsl/Trace"
+
+import "http://www.xtext.org/example/mapping/Mapping" as map
+
+FormalResult:
+	'FormalResults' name=ID '{'
+		((timenodes+=TimeNode (',' timenodes+=TimeNode)*) | 
+		(formalElements+=FormalElement (',' formalElements+=FormalElement)*))
+	'}'
+;
+	
+TimeNode:
+	'TimeNode' name=ID '{'
+		formalElements+=FormalElement (',' formalElements+=FormalElement)*
+	'}'
+;
+
+FormalElement:
+	'FormalElement' formalElement=[map::FormalElement] '{' //mappingchecker=MappingChecker '{'
+		element=Element
+		//'Refers to' umlElement=[map::UmlElement]
+	'}'
+;
+
+//MappingChecker:
+//	'using' mapping=Mapping
+//;
+//
+//Mapping:
+//	'mapping at' mappingFile=STRING
+//;
+
+Element:
+	//'Refers to' kind=ElementKind 'element' '{'
+	'Refers to' typeElement=[map::TypeElement] 'element' '{' 
+		'With ID' umlElement=[map::UmlElement]
+		'Belongs to' (diagram=Diagram | model=Model)
+	'}'
+;
+
+//enum ElementKind:
+//	CLASS='Class' |
+//	ATTRIBUTE='Attribute' |
+//	OPERATION='Operation' |
+//	LIFELINE='LifeLine' |
+//	PARAMETER='Parameter' |
+//	MESSAGE='Message' |
+//	STATE='State' |
+//	TRANSITION='Transition' |
+//	OBJECT='Object' |
+//	ACTION='Action' |
+//	CONTROLFLOW='ControlFlow'
+//;
+
+Diagram:
+	kind=DiagramKind 'from' model=Model
+;
+
+enum DiagramKind:
+	CLASSDIAGRAM='ClassDiagram' |
+	SEQUENCEDIAGRAM='SequenceDiagram' |
+	STATEDIAGRAM='StateDiagram' |
+	OBJECTDIAGRAM='ObjectDiagram' |
+	INTERACTIONOVERVIEWDIAGRAM='InteractionOverviewDiagram'
+;
+
+Model:
+	kind=ModelKind
+;
+
+enum ModelKind:
+	UML='UMLModel' |
+	SysML = 'SysMLModel' |
+	BPMN = 'BMPNModel'
+;

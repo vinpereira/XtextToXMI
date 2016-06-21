@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="trace" nsURI="http://www.xtext.org/example/dsl/Trace" nsPrefix="trace">
+  <eClassifiers xsi:type="ecore:EClass" name="FormalResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timenodes" upperBound="-1"
+        eType="#//TimeNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formalElements" upperBound="-1"
+        eType="#//FormalElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formalelement" upperBound="-1"
+        eType="#//FormalElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FormalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formalElement" eType="ecore:EClass platform:/resource/org.xtext.example.mapping/model/generated/Mapping.ecore#//FormalElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//Element"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeElement" eType="ecore:EClass platform:/resource/org.xtext.example.mapping/model/generated/Mapping.ecore#//TypeElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="umlElement" eType="ecore:EClass platform:/resource/org.xtext.example.mapping/model/generated/Mapping.ecore#//UmlElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" eType="#//Diagram"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="#//Model"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Diagram">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//DiagramKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="#//Model"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DiagramKind">
+    <eLiterals name="CLASSDIAGRAM" literal="ClassDiagram"/>
+    <eLiterals name="SEQUENCEDIAGRAM" value="1" literal="SequenceDiagram"/>
+    <eLiterals name="STATEDIAGRAM" value="2" literal="StateDiagram"/>
+    <eLiterals name="OBJECTDIAGRAM" value="3" literal="ObjectDiagram"/>
+    <eLiterals name="INTERACTIONOVERVIEWDIAGRAM" value="4" literal="InteractionOverviewDiagram"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//ModelKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModelKind">
+    <eLiterals name="UML" literal="UMLModel"/>
+    <eLiterals name="SysML" value="1" literal="SysMLModel"/>
+    <eLiterals name="BPMN" value="2" literal="BMPNModel"/>
+  </eClassifiers>
+</ecore:EPackage>

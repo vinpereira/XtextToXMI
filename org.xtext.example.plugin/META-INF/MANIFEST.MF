@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Plugin
+Bundle-SymbolicName: org.xtext.example.plugin;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.xtext.example.plugin.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ com.google.inject;bundle-version="3.0.0",
+ org.eclipse.xtext;bundle-version="2.9.1",
+ org.eclipse.xtext.ui;bundle-version="2.9.1",
+ org.xtext.example.dsl;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
